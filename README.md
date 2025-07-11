@@ -1,4 +1,4 @@
-# Sketch Verse
+# SketchIt
 • Develop a web app that provides users with an intuitive and powerful online drawing tool.
 
 • Build various tools, including pens, shapes, erasers, color palettes, draggable notes, zoom
