@@ -7,4 +7,4 @@ drawings in PNG format.
 
 • Ensure a seamless user experience with a responsive design and easy-to-use interface.
 
-![image](https://github.com/Jugnu-Gupta/SketchVerse/assets/101708726/c6c2c279-25cd-4c4d-92ed-fc6fe3e580fc)
+![image](https://github.com/kkanwatia/Skecth_It/blob/main/src/assets/websiteImg.png)
