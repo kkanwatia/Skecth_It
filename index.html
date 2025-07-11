@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/main.css">
+    <link rel="shortcut icon" href="./src/assets/logo.png" type="image/x-icon">
+
+    <!-- scripts -->
+    <script src="https://kit.fontawesome.com/848e0df24d.js" crossorigin="anonymous" defer></script>
+    <script src="./src/script.js" type="module" defer></script>
+    <title>Sketch Verse</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            user-select: none;
+            /* Standard syntax */
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="relative h-[100vh] w-full" id="container" data-container>
+
+        <!-- toolbar -->
+        <aside class="fixed z-[1000000] top-4 left-1/2 -translate-x-1/2 flex justify-center 
+            shadow-custom gap-4 py-2 px-4 rounded-xl bg-white text-white xs:py-4 xs:px-2
+            xs:left-4 xs:translate-x-0 xs:flex-col xs:top-1/2 xs:-translate-y-1/2" data-aside>
+
+            <!-- pen button -->
+            <button class="bg-blue-400 text-white 
+            rounded-full px-2 py-1 hover:scale-110 transition-all" title="Pen" data-pen>
+                <i class="fa-solid fa-pen "></i>
+            </button>
+
+
+            <!-- Eraser button -->
+            <button class="relative" title="Eraser">
+                <i title="Standard Eraser" class="fa-solid fa-eraser p-2 rounded-full text-blue-400 bg-gray-200 
+                    hover:scale-110 transition-all" data-eraserSibling></i>
+
+                <div title="Stroke Eraser" class="absolute -top-1/2 -left-[2px] bg-white text-blue-400 scale-0 flex
+                    flex-col rounded-xl shadow-custom xs:flex-row xs:-left-1/2 xs:-top-[2px] xs:items-center"
+                    data-eraser>
+
+                    <i class="fa-solid fa-eraser p-2 px-2 pt-3 xs:py-2 xs:pl-3 xs:pt-2" data-basicEraser></i>
+                    <div class="p-2 px-2 pb-3 xs:py-2 xs:pr-3 xs:pb-2" data-objectEraser>
+                        <i class="fa-solid fa-eraser text-sm border-2 border-dashed border-blue-400 
+                            rounded-full p-[2px]"></i>
+                    </div>
+                </div>
+            </button>
+
+
+
+            <!-- multiple shapes button -->
+            <button class="relative" title="More Tools">
+                <i class="fa-solid fa-shapes p-2 rounded-full text-blue-400 bg-gray-200 
+                    hover:scale-110 transition-all" data-multipleShapes></i>
+
+                <div class="absolute -top-[200%] -left-[2px] bg-white text-blue-400 scale-0 shadow-custom flex  
+                rounded-xl flex-col xs:flex-row xs:-left-[200%] xs:-top-[2px] xs:items-center" data-ListOfShapes>
+
+                    <i title="Straight Line" class="fa-solid fa-lines-leaning p-2 px-3 pt-3" data-straightLine></i>
+                    <i title="Circle Stroke" class="fa-regular fa-circle p-2 px-3" data-circle></i>
+                    <i title="Circle Fill" class="fa-solid fa-circle p-2 px-3" data-solidCircle></i>
+                    <i title="Rectangle Stroke" class="fa-regular fa-square p-2 px-3" data-rectangle></i>
+                    <i title="Rectangle Fill" class="fa-solid fa-square p-2 px-3 pb-3" data-solidRectangle></i>
+                </div>
+            </button>
+
+
+            <!-- Zoom button-->
+            <button class="relative" title="Zoom">
+                <i title="Zoom In" class="fa-solid fa-magnifying-glass p-2 rounded-full text-blue-400 bg-gray-200 
+                    hover:scale-110 transition-all" data-zoom></i>
+
+                <div title="Zoom Out" class="absolute -top-1/2 -left-[2px] bg-white text-blue-400 scale-0 flex
+                    flex-col rounded-xl shadow-custom xs:flex-row xs:-left-1/2 xs:-top-[2px] xs:items-center"
+                    data-zoomInOut>
+
+                    <i class="fa-solid fa-magnifying-glass-plus p-3 pb-2 pt-3 xs:pl-3 xs:pr-2 xs:p-3" data-zoomIn></i>
+                    <i class="fa-solid fa-magnifying-glass-minus p-3 pt-2 pb-3 xs:pr-3 xs:pl-2 xs:p-3" data-zoomOut></i>
+                </div>
+            </button>
+
+
+            <!-- hand button-->
+            <button title="Hand" class="bg-gray-200 text-blue-400 
+                rounded-full px-2 py-1 hover:scale-110 transition-all" data-hand>
+                <i class="fa-solid fa-hand"></i>
+            </button>
+
+
+            <!-- pen-width slider -->
+            <button title="Width Selector" class="relative">
+                <i class="fa-solid fa-pen-ruler p-2 rounded-full text-blue-400 bg-gray-200 
+                    hover:scale-110 transition-all" data-strokeWidth></i>
+
+                <div class="absolute top-0 -left-[150%] bg-white text-blue-400 rounded-xl scale-0 flex
+                    px-3 w-32 shadow-custom xs:-top-2" data-lineWidth>
+                    <input type="range" name="slider" min="1" max="10" step="1" value="2" class="py-3 w-full"
+                        data-lineWidthSlider>
+                </div>
+            </button>
+
+
+            <!-- color picker button -->
+            <button title="Color Palette" class="relative">
+                <i class="fa-solid fa-palette p-2 rounded-full text-blue-400 bg-gray-200 
+                    hover:scale-110 transition-all" data-colorPickerSibling></i>
+
+                <div title="Brush Color" class="absolute -top-2/3 -left-2/3 bg-white px-3 cursor-default
+                    text-blue-400 rounded-xl scale-0 flex flex-col shadow-custom xs:-top-[90%]" data-colorPicker>
+                    <!-- brush color -->
+                    <div class="flex justify-between items-center gap-2 py-2">
+                        <label for="strokeColor" class="text-sm"><i class="fa-solid fa-paintbrush"></i></label>
+                        <div class="rounded-full overflow-hidden w-8 h-8 relative border-4">
+                            <input class="h-10 w-10 absolute 
+                                -top-[25%] -left-[25%]   cursor-pointer " type="color" name="strokeColor"
+                                id="strokeColor" value="#000000" data-strokeColor>
+                        </div>
+                    </div>
+                    <!-- background color -->
+                    <div title="Background Color" class="flex justify-between items-center gap-2 pb-2">
+                        <label for="backgroundColor" class="text-sm">
+                            <i class="fa-solid fa-paint-roller"></i>
+                        </label>
+                        <div class="rounded-full overflow-hidden w-8 h-8 relative border-4">
+                            <input class="h-10 w-10 absolute 
+                                -top-[25%] -left-[25%] cursor-pointer" type="color" value="#ffffff"
+                                name="backgroundColor" id="backgroundColor" data-backgroundColor>
+                        </div>
+                    </div>
+                </div>
+            </button>
+
+
+            <!-- note button -->
+            <button title="Note" class="bg-gray-200 text-blue-400 
+                rounded-full px-2 py-1 hover:scale-110 transition-all" data-addNote>
+                <i class="fa-solid fa-notes-medical "></i>
+            </button>
+        </aside>
+
+
+        <!-- canvas -->
+        <canvas class="canvas relative top-0 bg-[#ffffff] w-full h-[100%] z-0">
+        </canvas>
+
+
+        <!-- dummy note -->
+        <div class="absolute top-[calc(50%-66px)] left-[calc(50%-96px)] hidden flex-col 
+            bg-white shadow-custom w-48" id="data-note" data-note>
+            <div class="flex justify-between items-center bg-gray-100">
+                <input type="text" value="" placeholder="Note..." class="outline-none 
+                    font-bold bg-gray-200 w-2/3 m-1">
+
+                <i class="fa-solid fa-minus text-[9px] cursor-pointer
+                    bg-green-500 text-white rounded-full p-[3px] py-[3px] ml-3"></i>
+
+                <i class="fa-solid fa-x text-[9px] cursor-pointer
+                    bg-red-500 text-white rounded-full p-1 py-[3px] mr-1"></i>
+            </div>
+            <textarea name="textbox" id="textbox" rows="5" cols="30" class="outline-none 
+                text-sm px-1 w-full h-24" placeholder="type here..."></textarea>
+        </div>
+
+
+        <!-- save button -->
+        <div class="fixed z-[1000000] top-4 right-4 p-2 flex items-center gap-4 
+            bg-white text-blue-400 rounded-xl shadow-custom">
+            <button class="text-blue-400 bg-gray-200 
+                rounded-full px-2 py-1 hover:scale-110 transition-all" data-saveImage>
+                <i class="fa-solid fa-file-export"></i>
+            </button>
+        </div>
+
+
+        <!-- selected tool -->
+        <div class="fixed z-[1000000] top-4 left-4 p-2 
+            bg-white text-blue-400 shadow-custom rounded-xl">
+            <p class="bg-gray-200 rounded-xl px-2 py-1 font-bold" data-tool>Pen</p>
+        </div>
+
+
+        <!-- undo/redo button -->
+        <div class="fixed z-[1000000] bottom-4 left-4 px-4 py-2 flex items-center gap-4 
+            bg-white text-blue-400 rounded-xl shadow-custom">
+            <!-- undo button -->
+            <button title="Undo" class="transition-all rounded-full bg-gray-200 
+                px-2 py-1 hover:scale-110 active:animate-anticlockwiseSpin" data-undo>
+                <i class="fa-solid fa-arrow-rotate-left"></i></button>
+
+            <!-- redo button -->
+            <button title="Redo" class="transition-all rounded-full bg-gray-200 
+                px-2 py-1 hover:scale-110 active:animate-clockwiseSpin" data-redo>
+                <i class="fa-solid fa-arrow-rotate-right"></i></button>
+        </div>
+
+
+        <!-- add/next/prev/clear/delete button -->
+        <div class="fixed z-[1000000] bottom-4 right-4 px-4 py-2 flex items-center gap-4 
+            bg-white text-blue-400 rounded-xl shadow-custom">
+            <!-- delete button -->
+            <button title="Delete Page" class="hidden hover:scale-110 transition-all 
+                rounded-full bg-gray-200 px-2 py-1" data-deletePageButton>
+                <i class="fa-solid fa-trash"></i></button>
+
+            <!-- clear button -->
+            <button title="Clear Page" class="hover:scale-110 transition-all 
+                rounded-full bg-gray-200 px-2 py-1" data-clearPageButton>
+                <i class="fa-solid fa-broom text-[17px]"></i></button>
+
+            <!-- prev button -->
+            <button title="Previous Page" class="hidden hover:scale-110 transition-all 
+                rounded-full bg-gray-200 px-2 py-1" data-prevPageButton>
+                <i class="fa-solid fa-arrow-left text-[17px]"></i></button>
+
+            <!-- current page number -->
+            <button title="Page No" class="hover:scale-110 transition-all rounded-full font-semibold
+                    bg-gray-200 px-2  p-1 cursor-default" data-pageNo>1/1</button>
+
+            <!-- add/next button -->
+            <button title="Add Page" class="hover:scale-110 transition-all 
+                rounded-full bg-gray-200 px-2 py-1" data-nextAndAddPageButton>
+                <i class="fa-solid fa-plus text-[17px]"></i></button>
+        </div>
+
+    </div>
+</body>
+
+</html>
